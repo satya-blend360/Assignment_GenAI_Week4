@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 
 # ❗ TEMPORARY: API key hard-coded (for testing only)
-API_KEY = "AIzaSyC-2XYF4P9qUI_CnGlw6VerDx60t6mos-4"
+API_KEY = "YOUR_API_KEY_HERE"
 
 st.set_page_config(page_title="Gemini Simple App")
 
