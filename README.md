@@ -74,7 +74,7 @@ week4/
 
 ## 🏗️ Architecture:
 
-![Architecture.png](Architecture.png)
+![Architecture1.png](Architecture1.png)
 
 
 ## 🚀 How to Run the Project
