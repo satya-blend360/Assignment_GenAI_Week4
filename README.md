@@ -72,6 +72,11 @@ week4/
 
 ---
 
+## 🏗️ Architecture:
+
+![Architecture.png](Architecture1.png)
+
+
 ## 🚀 How to Run the Project
 
 ### 1️⃣ Activate Virtual Environment
@@ -199,7 +204,9 @@ Shows:
 
 ### 📸 Screenshot 5 — `5.png`
 ![5png](5.png)
-**Scalability Architecture (100GB Data)**
+
+
+**Data Insights**
 
 Illustrates:
 
@@ -210,6 +217,85 @@ Illustrates:
 * Caching & retrieval layers
 
 ---
+
+
+## 🚀 Scalability Challenge: Handling 100GB+ Sales Data
+
+When the dataset grows to **100GB or more**, a local CSV + Pandas approach is no longer feasible. The system is redesigned using **cloud-native big data and AI retrieval patterns**.
+
+---
+
+### 📥 Data Preprocessing
+
+* Store raw files in **cloud object storage** (Google Cloud Storage / AWS S3)
+* Use **Apache Spark** for distributed preprocessing:
+
+  * Data cleaning & validation
+  * Partitioning by `Year`, `Month`, `Region`
+  * Aggregation of daily and monthly metrics
+* Save processed data in **Parquet / Delta format** for efficient reads
+
+---
+
+### 🗄️ Data Storage & Indexing
+
+* Load processed data into **BigQuery / Snowflake**
+* Use:
+
+  * **Partitioned tables** (by date)
+  * **Clustered columns** (state, category)
+* Create:
+
+  * Aggregated fact tables (revenue, orders, cancellations)
+  * Dimensional tables (product, geography)
+
+---
+
+### 🔍 Efficient Data Retrieval
+
+* Use **SQL-based aggregation** for structured queries
+* Use **LangChain + Retrieval-Augmented Generation (RAG)**:
+
+  * Convert summaries into embeddings
+  * Store embeddings in **FAISS / Pinecone**
+* Retrieval Flow:
+
+```
+User Query → Intent Detection
+          → SQL / Vector Search
+          → Relevant Summary
+          → Gemini AI Response
+```
+
+---
+
+### ☁️ Tools & Technologies Used
+
+| Layer         | Tools                     |
+| ------------- | ------------------------- |
+| Storage       | GCS / S3                  |
+| Processing    | Apache Spark / Databricks |
+| Analytics     | BigQuery / Snowflake      |
+| AI            | Gemini Pro                |
+| Search        | FAISS / Pinecone          |
+| Orchestration | Airflow                   |
+| Deployment    | Docker + Kubernetes       |
+| Caching       | Redis                     |
+
+---
+
+### ✅ Benefits of This Approach
+
+* Scales horizontally to **100GB+**
+* Fast query response times
+* Cost-efficient storage
+* AI answers remain **accurate and grounded**
+* Production-ready architecture
+
+---
+
+##  Superior Architecture
+![Big_Architecture.png](Big_Architecture.png)
 
 ## 🏗️ Scalability: Handling 100GB+ Data
 
