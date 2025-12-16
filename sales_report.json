@@ -1,0 +1,112 @@
+{
+  "overview": {
+    "total_orders": 128969,
+    "completed_orders": 108068,
+    "cancelled_orders": 18329,
+    "total_revenue": 71670759.0,
+    "avg_order_value": 663.2005681607876,
+    "median_order_value": 625.0,
+    "date_range": {
+      "start": "2022-03-31",
+      "end": "2022-06-29"
+    }
+  },
+  "temporal": {
+    "monthly_revenue": {
+      "Apr": 26234520.0,
+      "Jun": 21389367.0,
+      "Mar": 94810.0,
+      "May": 23952062.0
+    },
+    "monthly_orders": {
+      "Apr": 41006,
+      "Jun": 31566,
+      "Mar": 152,
+      "May": 35344
+    },
+    "quarterly_revenue": {
+      "Q1": 94810.0,
+      "Q2": 71575949.0
+    },
+    "best_month": "Apr",
+    "best_quarter": "Q2"
+  },
+  "geographical": {
+    "top_states": {
+      "Maharashtra": 12223831.0,
+      "Karnataka": 9649981.0,
+      "Telangana": 6290128.0,
+      "Uttar Pradesh": 6186123.0,
+      "Tamil Nadu": 5954349.0,
+      "Delhi": 4007579.0,
+      "Kerala": 3377321.0,
+      "West Bengal": 3207213.0,
+      "Andhra Pradesh": 2882206.0,
+      "Haryana": 2654274.0
+    },
+    "top_cities": {
+      "Bengaluru": 6729194.0,
+      "Hyderabad": 5083466.0,
+      "Mumbai": 3954578.0,
+      "New Delhi": 3635737.0,
+      "Chennai": 3296242.0,
+      "Pune": 2576866.0,
+      "Kolkata": 1548194.0,
+      "Gurugram": 1191852.0,
+      "Thane": 1015128.0,
+      "Lucknow": 957382.0
+    },
+    "total_states": 47,
+    "total_cities": 6806
+  },
+  "product": {
+    "top_categories": {
+      "Set": 35729571.0,
+      "Kurta": 19425337.0,
+      "Western Dress": 10209590.0,
+      "Top": 4904066.0,
+      "Ethnic Dress": 732744.0,
+      "Blouse": 418389.0,
+      "Bottom": 135453.0,
+      "Saree": 114694.0,
+      "Dupatta": 915.0
+    },
+    "category_orders": {
+      "Blouse": 784,
+      "Bottom": 367,
+      "Dupatta": 3,
+      "Ethnic Dress": 981,
+      "Kurta": 41663,
+      "Saree": 142,
+      "Set": 41828,
+      "Top": 9162,
+      "Western Dress": 13138
+    },
+    "size_distribution": {
+      "3XL": 12729,
+      "4XL": 373,
+      "5XL": 487,
+      "6XL": 657,
+      "FREE": 324,
+      "L": 18467,
+      "M": 18873,
+      "S": 14126,
+      "XL": 17579,
+      "XS": 9164,
+      "XXL": 15289
+    }
+  },
+  "performance": {
+    "b2b_revenue": 559400.0,
+    "b2b_orders": 797,
+    "b2b_percentage": 0.7374986119850465,
+    "cancellation_rate": 14.211942404763937,
+    "fulfillment_breakdown": {
+      "Amazon": 76479,
+      "Merchant": 31589
+    },
+    "channel_breakdown": {
+      "Amazon.in": 108068
+    }
+  }
+}

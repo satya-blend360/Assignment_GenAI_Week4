@@ -1,0 +1,25 @@
+Retail Insights Assistant
+
+Goal:
+    Create a GenAI chatbot or summarizer that answers business questions about the sales dataset.
+
+Tasks:
+    Use Gemini API (or OpenAI API / LangChain) for natural language understanding.
+
+    Input: Sales summary or CSV file.
+
+Output:
+    Summary report, or Answers to user questions (e.g., “Which region performed best in Q3?”).
+    Add a prompt-engineering layer for consistency.
+
+Scalability Challenge:
+    Propose an approach when the data grows to 100GB —
+    How will you preprocess, store, and index it?
+    How will you retrieve relevant data efficiently?
+    Which cloud or big data tools will you use?
+
+Tech: Python, Gemini API / OpenAI API / LangChain, Streamlit (optional UI)
+
+Deliverables: Chatbot or summarization script + screenshots (chat interface, example responses, summary text) + architecture/approach for 100GB data
+
+Dataset: https://wgcp-my.sharepoint.com/:f:/g/personal/ritish_jogi_blend360_com/EmxzwFjNkaxPuCw2mQ0abr0BGg6XzIPlj22VogFVtQniyg?e=aglSyr
