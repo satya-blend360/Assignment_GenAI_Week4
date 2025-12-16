@@ -2,6 +2,11 @@
 
 **Retail Insights Assistant** is a production-ready **GenAI chatbot** that enables business users to ask **natural language questions** about Amazon sales data and receive **data-driven insights** instantly.
 
+👉 **Live Streamlit App:**
+[https://assignmentgenaiweek4.streamlit.app/](https://assignmentgenaiweek4.streamlit.app/)
+
+
+
 The system combines:
 
 * **Python + Pandas** for analytics
