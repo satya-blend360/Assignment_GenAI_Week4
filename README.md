@@ -1,304 +1,142 @@
-# 🛒 Amazon Sale Report Data Cleaning & Exploratory Analysis
+# 🛍️ Retail Insights Assistant - Complete Project Documentation
 
-This project performs **data cleaning, KPI computation, and exploratory analysis** on a real-world **Amazon Retail Sales dataset**.  
-It also includes an **Object-Oriented Python class (SalesAnalyzer)** encapsulating all analytics logic.
+## 📋 Project Overview
 
+A production-ready GenAI chatbot that provides intelligent analytics for Amazon sales data, powered by Google's Gemini AI. Includes comprehensive scalability architecture for handling 100GB+ datasets.
 
+### 🎯 Key Features
 
-👉 **Live Streamlit App:**
-[https://assignmentpythonweek1.streamlit.app/](https://assignmentpythonweek1.streamlit.app/)
-
-
+✅ **AI-Powered Chat Interface** - Natural language queries using Gemini Pro  
+✅ **Interactive Visualizations** - Plotly charts for data exploration  
+✅ **Comprehensive Analytics** - Revenue, geographical, product insights  
+✅ **Scalable Architecture** - Ready for 100GB+ data with BigQuery/Spark  
+✅ **Real-time Processing** - Instant responses with smart caching  
+✅ **Beautiful UI** - Modern Streamlit interface with React components
 
 ---
 
-## 📂 Project Structure
+## 🏗️ Project Structure
+
 ```
-📁 Project/
-├── Amazon Sale Report.csv
-├── Cleaned_Amazon_Sale_Report.csv
-├── EDA.ipynb
-├── Kpi Analysis.ipynb
-├── SalesAnalyzer.py
-├── amazon.ipynb
-├── streamlit_app.py (Streamlit Dashboard)
-├── outlier_boxplot.png
-│──monthly_revenue_trend.png
-│── category_sales.png
-│── top_states_sales.png
-│── order_status_distribution.png
-│── b2b_vs_b2c.png
+retail-insights-assistant/
 │
-└── README.md
+├── app.py                          # Main Streamlit application
+├── config.py                       # Configuration management
+├── data_processor.py               # Data processing & analytics
+├── ai_assistant.py                 # Gemini AI integration
+├── visualizations.py               # Plotly visualizations
+├── requirements.txt                # Python dependencies
+├── .env                           # Environment variables (create this)
+│
+├── scalability/                   # 100GB scalability implementation
+│   ├── data_ingestion_pipeline.py # Spark ETL pipeline
+│   ├── bigquery_connector.py      # BigQuery integration
+│   ├── semantic_search.py         # Vector DB + LangChain
+│   ├── caching_layer.py           # Redis caching
+│   └── kubernetes/                # K8s deployment configs
+│       ├── deployment.yaml
+│       ├── service.yaml
+│       └── hpa.yaml
+│
+├── docs/                          # Documentation
+│   ├── architecture.md            # Scalability architecture
+│   ├── api_reference.md           # API documentation
+│   └── deployment_guide.md        # Deployment instructions
+│
+├── tests/                         # Unit tests
+│   ├── test_data_processor.py
+│   ├── test_ai_assistant.py
+│   └── test_integration.py
+│
+└── data/                          # Data directory
+    ├── raw/                       # Raw CSV files
+    ├── processed/                 # Cleaned data
+    └── sample/                    # Sample datasets
 ```
 
 ---
 
-## 🎯 Project Goals
+## ⚡ Quick Start Guide
 
-- Clean raw retail sales data (missing values, duplicates, formatting issues)
-- Perform type conversion (dates, numeric fields, booleans, categories)
-- Compute key business KPIs:
-  - Monthly Revenue  
-  - Region-wise Sales  
-  - Profit Margin (%)  
-  - Average Order Value (AOV)  
-  - Cancellation Rate  
-  - Category-wise Sales  
-  - B2B vs B2C Sales Split  
-- Visualize insights using **Matplotlib** and **Plotly**
-- Implement an **OOP-based SalesAnalyzer class** to automate analysis
-- Interactive **Streamlit Dashboard** for real-time exploration
+### Prerequisites
 
----
+- Python 3.9+
+- Gemini API Key ([Get it here](https://makersuite.google.com/app/apikey))
+- 4GB+ RAM
+- Internet connection
 
-## 🧹 1. Data Cleaning Summary
-
-Key cleaning operations performed:
-
-### ✔ Column Normalization
-- Trimmed column name spaces  
-- Dropped `index` and `Unnamed:22`
-
-### ✔ Datatype Fixes
-- `Date` → datetime  
-- `Amount` & `Qty` → numeric  
-- `ship-postal-code` → string  
-- `B2B` → boolean
-
-### ✔ Text Standardization
-- Title case for cities/states  
-- Uppercase for sizes  
-- Cleaned category names
-
-### ✔ Intelligent Missing Value Handling
-- Courier Status → `"Pending"`  
-- Promotion IDs → `"No Promotion"`  
-- Currency → `"INR"`  
-- Fulfilled-by assigned using **Fulfilment logic**
-
-### ✔ Special Logic
-Cancelled orders are assigned `Amount = 0`.
-
-### ✔ Final Output
-Cleaned dataset saved as: `Cleaned_Amazon_Sale_Report.csv`
-
----
-
-## 📊 2. KPI Analysis
-
-All KPI logic is implemented in **SalesAnalyzer.py** using OOP.
-
-### 📈 Monthly Revenue Trend
-![Monthly Revenue](monthly_revenue_trend.png)
-
-### 🗺 Region-wise Sales (Top States)
-![Top States](top_states_sales.png)
-
-### 🏷 Category-wise Sales Distribution
-![Category Sales](category_sales.png)
-
-### 👥 B2B vs B2C Comparison
-![B2B vs B2C](b2b_vs_b2c.png)
-
-### 📦 Order Status Distribution
-![Order Status](order_status_distribution.png)
-
-### ⚠️ Outlier Detection (Sale Amount)
-![Outliers](outlier_boxplot.png)
-
----
-
-## 🧮 3. Additional KPIs Computed
-
-- **Profit Margin %**: Assuming baseline cost = 65% of selling price
-- **Average Order Value (AOV)**: `Total Revenue / Number of Orders`
-- **Cancellation Rate**: Percentage of orders marked Cancelled
-- **Top Performing Categories**: By revenue and quantity
-- **Fulfilment Performance**: Amazon vs Merchant comparison
-
----
-
-## 🧠 4. SalesAnalyzer OOP Class
-
-The project includes a full OOP implementation in `SalesAnalyzer.py`
-
-### Features
-- Monthly Revenue Analysis
-- Region Sales Breakdown
-- Average Order Value Calculation
-- Profit Margin Computation
-- Cancellation Rate Analysis
-- Automated Trend Charts
-- Outlier Detection Visualizations
-
-### Example Usage
-```python
-from SalesAnalyzer import SalesAnalyzer
-import pandas as pd
-
-df = pd.read_csv("Cleaned_Amazon_Sale_Report.csv")
-analyzer = SalesAnalyzer(df)
-
-# Generate comprehensive report
-analyzer.generate_report()
-
-# Plot visualizations
-analyzer.plot_monthly_revenue()
-analyzer.plot_region_sales()
-analyzer.plot_categories()
-analyzer.plot_outliers()
-```
-
----
-
-Here is the **completed section** for your README, polished and ready to copy–paste, including your **Streamlit app link** and full details:
-
----
-  
-## 📊 5. Interactive Streamlit Dashboard
-
-This project includes a fully interactive **Streamlit Dashboard** where you can explore Amazon Retail Sales visually.
-
-### 🚀 Launch Dashboard Locally
-To run the dashboard on your machine:
+### 1️⃣ Installation
 
 ```bash
+# Clone the repository
+git clone https://github.com/yourusername/retail-insights-assistant.git
+cd retail-insights-assistant
+
+# Create virtual environment
+python -m venv venv
+
+# Activate virtual environment
+# On Windows:
+venv\Scripts\activate
+# On Mac/Linux:
+source venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+### 2️⃣ Configuration
+
+Create a `.env` file in the project root:
+
+```env
+GEMINI_API_KEY=your_actual_api_key_here
+```
+
+### 3️⃣ Run the Application
+
+```bash
+# Start Streamlit app
 streamlit run streamlit_app.py
-````
 
-Make sure the required packages are installed:
-
-```bash
-pip install streamlit pandas numpy matplotlib seaborn plotly pyarrow
+# The app will open in your browser at http://localhost:8501
 ```
 
----
+### 4️⃣ Upload Your Data
 
-### 🌐 Live Hosted Dashboard
-
-You can view the hosted version of the dashboard here:
-
-👉 **Live Streamlit App:**
-[https://assignmentpythonweek1.streamlit.app/](https://assignmentpythonweek1.streamlit.app/)
-
-This dashboard includes:
-
-* 📈 Monthly Revenue Trends
-* 🛒 Category-wise Sales
-* 🗺 Top States by Sales
-* 👥 B2B vs B2C Split
-* 📦 Order Status Distribution
-* ⚠️ Outlier Detection
-* 🧹 Clean Data Preview
-* 🔍 Filters for Date, Category, Fulfilment, etc.
-
-All visualizations are interactive and allow you to explore the dataset in depth.
+1. Click "Upload CSV" in the sidebar
+2. Select your `Cleaned_Amazon_Sale_Report.csv`
+3. Wait for processing to complete
+4. Start asking questions!
 
 ---
 
-### Dashboard Features
-- **Overview Tab**: Key metrics and monthly trends
-- **Regional Analysis**: State-wise performance breakdown
-- **Product Insights**: Category and SKU analysis
-- **Deep Dive**: Custom filters and detailed exploration
-- **AI Insights**: Automated recommendations and anomaly detection
+## 📊 Sample Queries to Try
+
+### Revenue Analysis
+- "What is the total revenue for 2022?"
+- "Which month had the highest sales?"
+- "Show me quarterly revenue trends"
+
+### Geographical Insights
+- "Which state performed best in Q3?"
+- "What are the top 5 cities by revenue?"
+- "Compare Maharashtra vs Karnataka performance"
+
+### Product Analytics
+- "What are the top selling categories?"
+- "Which product sizes are most popular?"
+- "Show me category-wise revenue breakdown"
+
+### Business Metrics
+- "What's the average order value?"
+- "What is the cancellation rate?"
+- "How does B2B compare to B2C sales?"
 
 ---
 
-## 📓 6. Jupyter Notebooks
+## 🎨 Screenshots & Examples
 
-### ✔ `EDA.ipynb`
-Data cleaning + descriptive statistics
-
-### ✔ `Kpi Analysis.ipynb`
-KPI computation + visualizations
-
-### ✔ `amazon.ipynb`
-Combined workflow for cleaning + analysis
-
----
-
-## 🔧 7. Installation & Setup
-
-### Clone the repository
-```bash
-git clone https://github.com/satya-blend360/Assignment_Python_Week1.git
+### 1. Chat Interface
 ```
-
-### Install dependencies
-```bash
-pip install pandas numpy matplotlib seaborn plotly streamlit
-```
-
-### Run Jupyter Notebook
-```bash
-jupyter notebook
-```
-
-Open any of the notebooks:
-- `EDA.ipynb`
-- `Kpi Analysis.ipynb`
-- `amazon.ipynb`
-
-### Or run Python script
-```bash
-python SalesAnalyzer.py
-```
-
-### Launch Streamlit Dashboard
-```bash
-streamlit run app.py
-```
-
----
-
-## 📦 8. Dataset Information
-
-- **Total Records**: 128,971 orders
-- **Date Range**: April 2022 - March 2023
-- **Columns**: 26 features including order details, product info, shipping data, and financial metrics
-- **Categories**: Kurta, Set, Western Dress, Top, and more
-- **Geographic Coverage**: Multiple states across India
-
----
-
-## 🏆 9. Key Findings
-
-- Top performing state contributes 25%+ of total revenue
-- B2B orders have 40% higher average order value than B2C
-- Peak sales months align with festive seasons
-- Cancellation rate averages around 12-15%
-- Amazon fulfillment shows better delivery success rates
-
----
-
-## 🚀 10. Technologies Used
-
-- **Python 3.12+**
-- **Pandas**: Data manipulation and cleaning
-- **NumPy**: Numerical computations
-- **Matplotlib**: Static visualizations
-- **Seaborn**: Statistical plots
-- **Plotly**: Interactive charts
-- **Streamlit**: Web dashboard
-- **Jupyter**: Interactive notebooks
-
-
-
-
-
-## 🏁 Conclusion
-
-This project demonstrates:
-
-✅ Complete retail data cleaning workflow  
-✅ KPI-driven business analytics  
-✅ Rich visualizations for decision-making  
-✅ Clean and scalable **Object-Oriented Python design**  
-✅ Interactive dashboard for real-time insights  
-✅ Professional documentation & reproducible results  
-
-Perfect for showcasing **Data Engineering**, **Analytics**, and **Python Development** skills!
-
-# Assignment_GenAI_Week4
+User: Which region performed best in Q3?
